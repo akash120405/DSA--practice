@@ -1,0 +1,61 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        //3 rules
+        //1.checking rows
+        for(int row = 0; row < 9; row++){//loop from 0-9 in rows
+            bool used[10] = {false};//see which number is appeared in the row now
+            for(int col = 0; col < 9; col++){ //loop from 0-9 in columns
+                if(board[row][col] == '.'){ //if the cell is empty ,skip
+                    continue;
+                }
+
+                int num = board[row][col] - '0'; //convert character 0-9 to number 0-9
+
+                if(used[num] == true){ //if repeated
+                    return false; //sudoku invalid
+                }
+
+                used[num] = true;
+
+            }
+        }
+        //2.checking columns
+        for(int col = 0; col < 9; col++){
+            bool used[10] = {false};
+            for(int row = 0; row < 9; row++){
+                if(board [row][col] == '.'){
+                    continue;
+                }
+                int num = board[row][col] -'0';
+
+                if(used[num] == true){
+                    return false;
+                }
+                used[num] = true;
+        }
+
+        }        
+        //3. checking 3*3 boxes
+        for(int srow = 0; srow <9; srow +=3){
+            for(int scol = 0; scol <9; scol +=3){
+                bool used[10] = {false};
+                for(int i = 0; i <3;i++){
+                    for(int j = 0; j < 3; j++){
+                        char cur = board[srow + i][scol + j];
+                        if(cur == '.'){
+                            continue;
+                        }
+                        int num = cur - '0';
+
+                        if(used[num]==true){
+                            return false;
+                        }
+                        used[num] = true;
+                    }
+                }
+            }
+        }
+return true;
+    }
+};
