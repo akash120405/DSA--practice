@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    //Take input of 2 numbers, take input of which operator to use and perform
+    int a, b, op;
+    cout << "Enter a: ";
+    cin >> a;
+    cout << "Enter b: ";
+    cin >> b;
+
+    cout << "Choose operator (1-8): ";
+    cin >> op;
+
+    if (op == 1) {
+        cout << "Addition: " << a + b << endl;
+    } 
+    else if (op == 2) {
+        cout << "Subtraction: " << a - b << endl;
+    } 
+    else if (op == 3) {
+        cout << "Multiplication: " << a * b << endl;
+    } 
+    else if (op == 4) {
+        if (b == 0)
+            cout << "Division not possible" << endl;
+        else
+            cout << "Division: " << a / b << endl;
+    } 
+    else if (op == 5) {
+        cout << "Right shift: " << (a >> b) << endl;
+    } 
+    else if (op == 6) {
+        cout << "Left shift: " << (a << b) << endl;
+    } 
+    else if (op == 7) {
+        cout << "Bitwise OR: " << (a | b) << endl;
+    } 
+    else if (op == 8) {
+        cout << "Bitwise AND: " << (a & b) << endl;
+    } 
+    else {
+        cout << "Invalid operator choice" << endl;
+    }
+    return 0;
+}
