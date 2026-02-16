@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int minSwaps(vector<int>& nums) {
+        int n = nums.size();
+
+        // Step 1: Count total ones
+        int totalOnes = 0;
+        for(int x : nums) {
+            totalOnes += x;
+        }
+
+        // Edge case: no swaps needed
+        if(totalOnes == 0 || totalOnes == n) return 0;
+
+        // Step 2: Sliding window on circular array
+        int onesInWindow = 0;
+
+        // First window
+        for(int i = 0; i < totalOnes; i++) {
+            onesInWindow += nums[i];
+        }
+
+        int maxOnes = onesInWindow;
+
+        // Step 3: Slide window over doubled range
+        for(int i = totalOnes; i < n + totalOnes; i++) {
+
+            // Add new element
+            onesInWindow += nums[i % n];
+
+            // Remove old element
+            onesInWindow -= nums[(i - totalOnes) % n];
+
+            maxOnes = max(maxOnes, onesInWindow);
+        }
+
+        // Step 4: Minimum swaps = zeros in best window
+        return totalOnes - maxOnes;
+    }
+};
+
+    
