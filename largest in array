@@ -1,0 +1,35 @@
+//largest in array
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution{
+    public:
+    int largest(vector <int> &arr) {
+        int large = arr[0];
+        for(int i = 1; i < arr.size() ; i++){
+            if(arr[i] > large){
+                large = arr[i];
+            }
+        }
+        //int n = arr.size();
+        return large;
+    }
+};
+int main(){
+    int n;
+    cout << "Size: " ;
+    cin >> n;
+
+    vector<int> arr(n);
+
+    cout << "Enter the elements : " ;
+    for(int i = 0; i < n; i++){
+        cin >> arr[i];
+    }
+    Solution obj;
+    int ans= obj.largest(arr);
+    cout << "ans : " << ans << endl;
+
+    return 0;
+}
