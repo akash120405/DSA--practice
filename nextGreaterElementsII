@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int sz1 = nums.size();
+
+        stack<int> st;
+
+        // store by index, not value
+        vector<int> nge(sz1, -1);
+
+        // run 2 passes for circular array
+        for (int i = 0; i < 2 * sz1; ++i) {
+            int idx = i % sz1;
+
+            while (!st.empty() && nums[st.top()] < nums[idx]) {
+                int ind = st.top();
+                st.pop();
+                nge[ind] = nums[idx];
+            }
+
+            // push only in first round
+            if (i < sz1) st.push(idx);
+        }
+
+        vector<int> ans(sz1, -1);
+
+        for (int i = 0; i < sz1; ++i) {
+            ans[i] = nge[i];
+        }
+
+        return ans;
+    }
+};
